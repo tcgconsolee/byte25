@@ -15,7 +15,7 @@ document.querySelector('.rolldie > img').addEventListener('click', () => {
                 .then(response => response.json())
                 .then(images => {
                     let r1 = Math.floor(Math.random() * images.length);
-                    let r2;
+                    let r2 = Math.floor(Math.random() * images.length);
                     while (r1 === r2) {
                         r2 = Math.floor(Math.random() * images.length);
                     } 
