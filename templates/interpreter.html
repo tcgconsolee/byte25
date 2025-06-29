@@ -65,7 +65,7 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementsByClassName('interpretation')[0].style.animation = "up 500ms forwards"
-                document.getElementsByClassName('itag')[0].innerHTML = "#" + data.tags[0];
+                document.getElementsByClassName('itag')[0].innerHTML = "#" + data.tags;
                 document.getElementsByClassName('idesc')[0].innerHTML = data.interpretation;
                 document.getElementById('iimg').src = data.image_path;
                 document.getElementById('iimg').style.display = 'block';
