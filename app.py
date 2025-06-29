@@ -50,7 +50,16 @@ def library():
 @app.route('/museum')
 def museum():
     return render_template('museum.html')
+@app.route('/list-images')
+def list_images():
+    folder = os.path.join(app.static_folder, 'library')
 
+    image_files = [
+        'library/' + i
+        for i in os.listdir(folder)
+        if i.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
+    ]
+    return jsonify(image_files)
 @app.route('/process', methods=["POST"])
 def process(): 
     file = request.files['file']

@@ -11,37 +11,24 @@ document.querySelector('.rolldie > img').addEventListener('click', () => {
         setTimeout(() => {
             anime.style.animation = "none"
             document.querySelector('.rolldie > img').style.display = "block"
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../static/library", true);
-            xhr.responseType = 'document';
-            let imgs = [];
-            xhr.onload = () => {
-            if (xhr.status === 200) {
-                var elements = xhr.response.getElementsByTagName("a");
-                for (x of elements) {
-                    if ( x.href.match(/\.(jpe?g|png|gif)$/) ) { 
-                        let img = document.createElement("img");
-                        img.src = x.href;
-                        imgs.push(img)
+            fetch('/list-images')
+                .then(response => response.json())
+                .then(images => {
+                    let r1 = Math.floor(Math.random() * images.length);
+                    let r2;
+                    while (r1 === r2) {
+                        r2 = Math.floor(Math.random() * images.length);
                     } 
-                };
-                let r1 = Math.floor(Math.random()*imgs.length-0.1)
-                let r2 = Math.floor(Math.random()*imgs.length-0.1)
-                while (r1==r2) {
-                    r2 = Math.floor(Math.random()*(imgs.length-1))
-                }
-                let img1 = imgs[r1];
-                let img2 = imgs[r2];
-                document.getElementsByClassName('rollimg')[0].innerHTML='';
-                document.getElementsByClassName('rollimg')[1].innerHTML='';  
-                document.getElementsByClassName('rollimg')[0].append(img1);
-                document.getElementsByClassName('rollimg')[1].append(img2);
-            } 
-            else {
-                alert('Request failed. Returned status of ' + xhr.status);
-            }
-            }
-            xhr.send()
+                    let img1 = document.createElement("img");
+                    img1.src = "/static/" + images[r1];
+                    let img2 = document.createElement("img");
+                    img2.src = "/static/" + images[r2];
+                    const rollDivs = document.getElementsByClassName('rollimg');
+                    rollDivs[0].innerHTML = '';
+                    rollDivs[1].innerHTML = '';
+                    rollDivs[0].appendChild(img1);
+                    rollDivs[1].appendChild(img2);
+                })
         }, 500);
     }, 2000);
 })
