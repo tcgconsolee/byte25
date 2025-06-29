@@ -94,7 +94,7 @@ def process():
                     "content": [
                         {
                             "type": "text",
-                            "text": "Choose a tag for this image from the following:- Graffiti, Sculpture and Digital Art"
+                            "text": "What is one tag that can describe this image ( answer in one word )"
                         },
                         {
                             "type": "image_url",
