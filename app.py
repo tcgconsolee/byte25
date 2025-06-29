@@ -69,7 +69,7 @@ def process():
                     "content": [
                         {
                             "type": "text",
-                            "text": "Convey the emotions, motive and thinking behind this image. I want an emotional response, not technical terms. I also want to know what the author must have been thinking/feeling while making this image. I also want to know if there is any historical significance behind this image"
+                            "text": "Convey the emotions, motive and thinking behind this image. I want an emotional response, not technical terms. I also want to know what the author must have been thinking/feeling while making this image. I also want to know if there is any historical significance behind this image. Write this in brief in the form of a paragraph"
                         },
                         {
                             "type": "image_url",
