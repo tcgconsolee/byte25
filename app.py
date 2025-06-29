@@ -113,6 +113,8 @@ def process():
         )
         interpretation = completion1.choices[0].message.content
         tags = completion2.choices[0].message.content
+        print(interpretation)
+        print(tags)
         return jsonify({
             "interpretation":interpretation,
             "tags":tags,
