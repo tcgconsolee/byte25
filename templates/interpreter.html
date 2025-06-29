@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Art & Culture</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body style="background:#000000">
+        <div class="menu">
+        <div class="menu-items">
+            <div class="menu-item"></div>
+            <a class="menu-item" href = "./interpreter">Interpreter</a>
+            <a class="menu-item" href = "./museum">Museum</a>
+            <a class="menu-item" href = "./library">Library</a>
+            <a class="menu-item" href = "./explore">Explore</a>
+        </div>
+    </div>
+    <div class="abstract">
+        <img src="../static/imgs/abstraction.png" alt="">
+    </div>
+    <div class="interpret">
+        <p>INTERPRET.AI</p>
+    </div>
+    <form action="/process" method="POST" enctype = 'multipart/form-data' id = "form">
+        <input type="file" id = "realfile" hidden="hidden" name = "file" id = "file">
+    </form>
+    <div class="upload">
+        <p>upload</p>
+    </div>
+    <div class="interpretation">
+        <div class="itext">
+            <p>AI INTERPRETER</p>
+        </div>
+        <div class="iimg">
+            <img id = "iimg">
+        </div>
+        <div class="itags">
+            <div class="itag"></div>
+        </div>
+        <div class="idesc"></div>
+
+    </div>
+    <script src="../static/index.js"></script>
+    <script>
+        const realfile = document.getElementById('realfile')
+        const upload = document.getElementsByClassName('upload')[0]
+        const form = document.getElementById('form')
+
+        upload.addEventListener('click', () => {
+            realfile.click()
+        })
+
+        realfile.addEventListener('change', () => {
+            const file = realfile.files[0];
+            if (!file) return;
+
+            const fdata = new FormData();
+            fdata.append('file', file);
+
+            fetch('/process', {
+                method: 'POST',
+                body: fdata
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementsByClassName('interpretation')[0].style.animation = "up 500ms forwards"
+                document.getElementsByClassName('itag')[0].innerHTML = "#" + data.tags[0];
+                document.getElementsByClassName('idesc').innerHTML = data.interpretation;
+                document.getElementById('iimg').src = data.image_path;
+                document.getElementById('iimg').style.display = 'block';
+            })
+            .catch(err => {
+                resultTag.innerText = "kuch galat hogya";
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+</html>

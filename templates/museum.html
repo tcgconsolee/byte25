@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Art & Culture</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+</head>
+<body>
+   <div class="menu">
+        <div class="menu-items">
+            <div class="menu-item"></div>
+            <a class="menu-item" href = "./interpreter">Interpreter</a>
+            <a class="menu-item" href = "./museum">Museum</a>
+            <a class="menu-item" href = "./library">Library</a>
+            <a class="menu-item" href = "./explore">Explore</a>
+        </div>
+    </div>
+    <div class="heromuseum">
+        What's your favorite genre?
+    </div>
+    <div class="imgsmuseum">
+        <div class="museumimg" 
+        data-mouse-attractionState="active"
+        data-mouse-attraction="mid"
+        data-mouse-attractionVal="30"
+	    data-mouse-magnetism="5"
+	    data-hover-type="outline">
+            <img src="../static/imgs/graffiti.png" alt="">
+            <div class="themetxt">
+                <p>Graffiti</p>
+            </div>
+            <div class="themedesc">
+                <p>explore the achieve</p>
+            </div>
+        </div>
+        <div class="museumimg"
+        data-mouse-attractionState="active"
+        data-mouse-attraction="mid"
+        data-mouse-attractionVal="30"
+	    data-mouse-magnetism="5"
+	    data-hover-type="outline">
+            <img src="../static/imgs/sculpture.png" alt="">
+            <div class="themetxt">
+                <p>Sculpture</p>
+            </div>
+            <div class="themedesc">
+                <p>crave through emotions</p>
+            </div>
+        </div>
+        <div class="museumimg"
+        data-mouse-attractionState="active"
+        data-mouse-attraction="mid"
+        data-mouse-attractionVal="30"
+	    data-mouse-magnetism="5"
+	    data-hover-type="outline">
+            <img src="../static/imgs/digiart.png" alt="">
+            <div class="themetxt">
+                <p>Digital Art</p>
+            </div>
+            <div class="themedesc">
+                <p>stylize through prompts</p>
+            </div>
+        </div>
+    </div>
+    <div class="collections">
+        <div class="collection">
+            <div class="collitem"><p>OLD REGIME</p></div>
+            <div class="collitem"><p>INDUSTRIAL REVOLUTION</p></div>
+            <div class="collitem"><p>ARCHEOLOGICAL COLLECTION</p></div>
+            <div class="collitem"><p>DIGITAL ART [AI PROMPTED]</p></div>
+            <div class="collitem"><p>LIBRARY OF BAROQUE ERA</p></div>
+            <div class="collitem"><p>MEDIEVAL PRESENCE</p></div>
+            <div class="collitem"><p>LIFE SCIENCE ARCHIEVE</p></div>
+            <div class="collitem"><p>COLLECTION OF SURREALISM</p></div>
+        </div>
+    </div>
+    <div class="museums">
+        <p>Museums near you</p>
+    </div>
+    <div class="museumgrid">
+        <div class="museum">
+            <div class="mimgmask">
+                <img src="../static/imgs/museum01.png" alt="" class="mimg">
+            </div>
+            <div class="mname">National Gallery of Modern Art</div>
+            <div class="mdesc">29.06.2025</div>
+        </div>
+        <div class="museum">
+            <div class="mimgmask">
+                <img src="../static/imgs/museum02.png" alt="" class="mimg">
+            </div>
+            <div class="mname">Salar Jung Museum</div>
+            <div class="mdesc">29.06.2025</div>
+        </div>
+        <div class="museum">
+            <div class="mimgmask">
+                <img src="../static/imgs/museum03.png" alt="" class="mimg">
+            </div>
+            <div class="mname">Sand Museum Mysuru</div>
+            <div class="mdesc">29.06.2025</div>
+        </div>
+        <div class="museum">
+            <div class="mimgmask">
+                <img src="../static/imgs/museum04.png" alt="" class="mimg">
+            </div>
+            <div class="mname">Museum of Illusions</div>
+            <div class="mdesc">29.06.2025</div>
+        </div>
+        <div class="museum">
+            <div class="mimgmask">
+                <img src="../static/imgs/museum05.png" alt="" class="mimg">
+            </div>
+            <div class="mname">Terracotta Museum</div>
+            <div class="mdesc">29.06.2025</div>
+        </div>
+    </div>
+    <div class="museumarrow">
+        <div class="rightar">
+            <img src="../static/imgs/right.svg" alt="">
+        </div>
+        <div class="leftar">
+            <img src="../static/imgs/left.svg" alt="">
+        </div>
+    </div>
+    <script src = "../static/index.js"></script>
+    <script>
+        document.getElementsByClassName('museumgrid')[0].style.left = "-33vw"
+        document.getElementsByClassName('rightar')[0].addEventListener('click', () => {
+            if(Number(document.getElementsByClassName('museumgrid')[0].style.left.split("v")[0])<-60) return;
+            document.getElementsByClassName('museumgrid')[0].style.left = Number(document.getElementsByClassName('museumgrid')[0].style.left.split("v")[0]) - 33 + "vw"
+        })
+        document.getElementsByClassName('leftar')[0].addEventListener('click', () => {
+            if(Number(document.getElementsByClassName('museumgrid')[0].style.left.split("v")[0])>-1) return;
+            document.getElementsByClassName('museumgrid')[0].style.left = Number(document.getElementsByClassName('museumgrid')[0].style.left.split("v")[0]) + 33 + "vw"
+        })
+        class HoverButton {
+    constructor(el) {
+      this.el = el;
+      this.hover = false;
+      this.calculatePosition();
+      this.attachEventsListener();
+    }
+    
+    attachEventsListener() {
+      window.addEventListener('mousemove', e => this.onMouseMove(e));
+      window.addEventListener('resize', e => this.calculatePosition(e));
+    }
+    
+    calculatePosition() {
+      gsap.set(this.el, {
+        x: 0,
+        y: 0,
+        scale: 1
+      });
+      const box = this.el.getBoundingClientRect();
+      this.x = box.left + (box.width * 0.5);
+      this.y = box.top + (box.height * 0.5);
+      this.width = box.width;
+      this.height = box.height;
+    }
+    
+    onMouseMove(e) {
+      let hover = false;
+      let hoverArea = (this.hover ? 0.7 : 0.5);
+      let x = e.pageX - this.x;
+      let y = e.pageY - this.y;
+      let distance = Math.sqrt( x*x + y*y );
+      if (distance < (this.width * hoverArea)) {
+         hover = true;
+          if (!this.hover) {
+            this.hover = true;
+          }
+          this.onHover(e.pageX, e.pageY);
+      }
+      
+      if(!hover && this.hover) {
+        this.onLeave();
+        this.hover = false;
+      }
+    }
+    
+    onHover(x, y) {
+      gsap.to(this.el,  {
+        x: (x - this.x) * 0.4,
+        y: (y - this.y) * 0.4,
+        scale: 1.1,
+        ease: 'power2.out',
+        duration: 0.4
+      });
+      this.el.style.zIndex = 10;
+    }
+    onLeave() {
+      gsap.to(this.el, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        ease: 'power2.out',
+        duration: 0.7
+      });
+      this.el.style.zIndex = 1;
+    }
+  }
+    document.querySelectorAll('.museumimg').forEach((element) => {
+        new HoverButton(element)
+    })
+    </script>
+</body>
+</html>
