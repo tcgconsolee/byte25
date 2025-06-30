@@ -246,7 +246,7 @@ p {
     left: 50%;
     transform: translate(-50%);
     font-family: 'general';
-    font-size: 3vw;
+    font-size: 3.25vw;
     font-weight: 700;
     width: 90vw;
     line-height: 0;
@@ -262,6 +262,10 @@ p {
     display: grid;
     grid-template-columns: min-content auto;
     column-gap: 5vw;
+}
+.collitem > a {
+    line-height: 170%;
+
 }
 .collitem > img {
     position: absolute;
