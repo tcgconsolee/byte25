@@ -254,9 +254,28 @@ p {
     display: grid;
     border-top: #000 solid 2px;
     grid-template-rows: auto auto auto auto auto auto auto auto;
+    text-wrap: nowrap;
 }
 .collitem {
+    position: relative;
     border-bottom: #000 solid 2px;
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 5vw;
+}
+.collitem > img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 15vh;
+    max-height: 20vh;
+    opacity: 0;
+    transition: opacity ease-in-out 500ms;
+    grid-column: 2;
+}
+.collitem:hover > img {
+    opacity: 1;
+    transition: opacity ease-in-out 500ms;
 }
 .museums {
     position: absolute;
@@ -576,7 +595,7 @@ span#big {
 .interpretation {
     position: absolute;
     left: 50%;
-    top: -50%;
+    top: 150%;
     transform: translate(-50%, -50%);
     border: #fff solid 3px;
     border-radius: 2vw;
@@ -652,14 +671,41 @@ span#big {
     font-weight: 400;
     color: #fff;
 }
+.topright {
+    position: absolute;
+    right: 2.5vw;
+    top: 2.5vw;
+    display: grid;
+    grid-template-columns: 1vw 1vw;
+    column-gap: 1vw;
+    height: 1vw;
+    width:3vw;
+}
+.icon {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
 @keyframes up {
     0% {
-        top: -50%; 
+        top: 150%; 
     }
     99.9% {
         top: 50%;
     }
     100% {
         top: 50%;
+    }
+}
+@keyframes down {
+    0% {
+        top: 50%; 
+    }
+    99.9% {
+        top: 150%;
+    }
+    100% {
+        top: 150%;
     }
 }

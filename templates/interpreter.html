@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body style="background:#000000">
-        <div class="menu">
+     <div class="menu">
         <div class="menu-items">
-            <div class="menu-item"></div>
+            <a class="menu-item" href ="./">Synthari</a>
             <a class="menu-item" href = "./interpreter">Interpreter</a>
             <a class="menu-item" href = "./museum">Museum</a>
             <a class="menu-item" href = "./library">Library</a>
@@ -39,7 +39,10 @@
             <div class="itag"></div>
         </div>
         <div class="idesc"></div>
-
+        <div class="topright">
+            <div class="icon" style="background:yellow"></div>
+            <div class="icon" style="background:red"></div>
+        </div>
     </div>
     <script src="../static/index.js"></script>
     <script>
@@ -75,6 +78,11 @@
                 console.error(err);
             });
         });
+        document.querySelectorAll('.icon').forEach((el) => {
+            el.addEventListener('click', () => {
+                document.getElementsByClassName('interpretation')[0].style.animation = "down 500ms forwards"
+            })
+        })
     </script>
 </body>
 </html>
