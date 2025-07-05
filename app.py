@@ -4,7 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-os.environ['API_KEY'] = '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'
+os.environ['API_KEY'] = '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'
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
